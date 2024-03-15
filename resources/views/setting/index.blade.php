@@ -26,6 +26,9 @@
                     @foreach ($roles as $role)
                     <option @selected($role->name == $data->role) value="{{ $role->name }}">{{ $role->name }}</option>
                     @endforeach
+                    {{-- @foreach ($roles as $role)
+                    <option @selected($role->name == $data->role) value="{{ $role->name }}">{{ dd($role->name) }}</option>
+                    @endforeach --}}
                 </select>
             </div>
 

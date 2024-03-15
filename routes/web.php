@@ -24,9 +24,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/home', function () {
-//     return view('welcome');
-// });
+Route::get('/home', function () {
+    return view('welcome');
+});
 
 Route::permanentRedirect('/', '/login');
 
