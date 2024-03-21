@@ -28,7 +28,7 @@ Route::get('/home', function () {
     return view('welcome');
 });
 
-Route::permanentRedirect('/', '/login');
+Route::permanentRedirect('/', '/home');
 
 Route::group(['middleware' => ['web', 'auth', 'verified']], function () {
     Route::resource('dashboard', DashboardController::class)->only('index');

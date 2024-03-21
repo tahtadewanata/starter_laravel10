@@ -15,11 +15,19 @@ class UserSeederTableSeeder extends Seeder
     {
         User::factory()->create([
             'name' => 'Super Admin',
+            'username' => 'superadmin',
             'email' => 'superadmin@gmail.com',
         ]);
 
         User::factory()->create([
+            'name' => 'Admin',
+            'username' => 'admin',
+            'email' => 'admin@gmail.com',
+        ]);
+
+        User::factory()->create([
             'name' => 'User',
+            'username' => 'user',
             'email' => 'user@gmail.com',
         ]);
     }

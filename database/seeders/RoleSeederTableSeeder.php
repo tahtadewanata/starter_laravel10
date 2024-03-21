@@ -21,12 +21,15 @@ class RoleSeederTableSeeder extends Seeder
         // $this->call("OthersTableSeeder");
 
         $superadmin = Role::create(['name' => 'Super Admin']);
+        $admin = Role::create(['name' => 'Admin']);
         $user = Role::create(['name' => 'User']);
 
         $superadmin->givePermissionTo(Permission::all());
+        $admin->givePermissionTo(['general', 'dashboard_index', 'profile_index', 'setting_index']);
         $user->givePermissionTo(['general', 'dashboard_index', 'profile_index']);
 
         User::firstWhere('email', 'superadmin@gmail.com')->assignRole('Super Admin');
+        User::firstWhere('email', 'admin@gmail.com')->assignRole('Admin');
         User::firstWhere('email', 'user@gmail.com')->assignRole('User');
     }
 }

@@ -23,6 +23,12 @@
             </div>
 
             <div class="mb-3">
+              <label for="username" class="form-label">Username <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="username" placeholder="Enter your username" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+              <x-form.validation.error name="username" />
+            </div>
+
+            <div class="mb-3">
               <label for="useremail" class="form-label">Email <span class="text-danger">*</span></label>
               <input type="email" class="form-control" id="useremail" placeholder="Enter email address" name="email" value="{{ old('email') }}" required autocomplete="email">
               <x-form.validation.error name="email" />

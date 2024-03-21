@@ -27,7 +27,7 @@ class PermissionController extends Controller
             ->paginate(10);
         $roles = Role::orderBy('name')->get();
 
-        // dd($$permissions->links());
+        // dd($permissions->links());
 
         return view('permission.index', compact('permissions', 'roles'));
     }

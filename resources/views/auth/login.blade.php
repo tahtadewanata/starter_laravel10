@@ -9,17 +9,17 @@
 
       <div class="card-body p-4">
         <div class="text-center mt-2">
-          <h5 class="text-primary">Welcome Back !</h5>
-          <p class="text-muted">Sign in to continue to Velzon.</p>
+          <h5 class="text-primary">Selamat datang !</h5>
+          <p class="text-muted">Login.</p>
         </div>
         <div class="p-2 mt-4">
           <form action="{{ route('login') }}" method="POST">
             @csrf
 
             <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" placeholder="Enter email address" name="email" value="{{ old('email') }}" required placeholder="Email" autocomplete="email" autofocus>
-              <x-form.validation.error name="email" />
+              <label for="username" class="form-label">Username</label>
+              <input type="text" class="form-control" id="username" placeholder="Masukkan username anda" name="username" value="{{ old('username') }}" required placeholder="username" autocomplete="username" autofocus>
+              <x-form.validation.error name="username" />
             </div>
 
             <div class="mb-3">
