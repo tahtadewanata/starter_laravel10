@@ -19,13 +19,13 @@ class Edufan extends Component
     {
         $this->judul = '';
         $this->deskripsi = '';
-        $this->status = 1;
+        $this->status = 0;
     }
 
     public function render()
     {
         $edufans = \App\Models\Edufan::latest()->get();
-        return view('livewire.edufan', compact('edufans'));
+        return view('livewire.edu', compact('edufans'));
     }
 
     public function create()
@@ -49,6 +49,25 @@ class Edufan extends Component
             session()->flash('success', 'Post Created Successfully!!');
             $this->resetFields();
             $this->addPost = false;
+        } catch (\Exception $ex) {
+            session()->flash('error', 'Something goes wrong!!');
+        }
+    }
+
+    public function edit($id)
+    {
+        try {
+            $post = \App\Models\Edufan::findOrFail($id);
+            if (!$post) {
+                session()->flash('error', 'Post not found');
+            } else {
+                $this->judul = $post->judul;
+                $this->deskripsi = $post->deskripsi;
+                $this->status = $post->status;
+                $this->postId = $post->id;
+                $this->updatePost = true;
+                $this->addPost = false;
+            }
         } catch (\Exception $ex) {
             session()->flash('error', 'Something goes wrong!!');
         }
