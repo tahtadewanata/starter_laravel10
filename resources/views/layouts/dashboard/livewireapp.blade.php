@@ -20,9 +20,7 @@
 </nav>
 <div class="container">
     <div class="row justify-content-center mt-3">
-        <div class="col-md-12">
-            @yield('content')
-        </div>
+        @livewire('edufan')
     </div>
 </div>
 

@@ -11,8 +11,7 @@ use App\Http\Controllers\MenuGroupController;
 use App\Http\Controllers\MenuItemController;
 use App\Http\Controllers\PelatihanController;
 use Illuminate\Support\Facades\Route;
-use App\Livewire\Edufan;
-
+use App\Livewire\Edufans\Index; // Perhatikan perubahan ini
 
 /*
 |--------------------------------------------------------------------------
@@ -30,13 +29,8 @@ Route::get('/home', function () {
 });
 
 Route::permanentRedirect('/', '/home');
-Route::get('/edu', function () {
-    return view('livewire/edu');
-});
-// Route untuk menyimpan data yang dikirimkan melalui Livewire
-// Route::post('/edu', [\App\Livewire\Edufan::class, 'submitForm']);
-// Route::get('/coba', Edufan::class);
-
+Route::get('/edu', Index::class)->name('edufans.index'); // Perhatikan perubahan ini
+Route::get('/create', App\Livewire\Edufans\Create::class)->name('edufans.create');
 
 Route::group(['middleware' => ['web', 'auth', 'verified']], function () {
     Route::resource('dashboard', DashboardController::class)->only('index');
