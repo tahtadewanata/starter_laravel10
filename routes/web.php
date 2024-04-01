@@ -31,6 +31,7 @@ Route::get('/home', function () {
 Route::permanentRedirect('/', '/home');
 Route::get('/edu', Index::class)->name('edufans.index'); // Perhatikan perubahan ini
 Route::get('/create', App\Livewire\Edufans\Create::class)->name('edufans.create');
+Route::get('/edit/{id}', App\Livewire\Edufans\Edit::class)->name('edufans.edit');
 
 Route::group(['middleware' => ['web', 'auth', 'verified']], function () {
     Route::resource('dashboard', DashboardController::class)->only('index');

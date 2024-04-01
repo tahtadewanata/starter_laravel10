@@ -30,7 +30,7 @@ Data Posts - Belajar Livewire 3 di SantriKoding.com
                             @forelse ($edufans as $post)
                             <tr>
                                 <td class="text-center">
-                                    <img src="{{ asset('/storage/posts/'.$post->image) }}" class="rounded" style="width: 150px">
+                                    <img src="{{ asset('storage/upload_file/edufan/'.$post->cover) }}" class="rounded" style="width: 150px">
                                 </td>
                                 <td>{{ $post->judul }}</td>
                                 <td>{!! $post->deskripsi !!}</td>
