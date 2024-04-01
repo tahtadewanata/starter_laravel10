@@ -11,7 +11,9 @@ use App\Http\Controllers\MenuGroupController;
 use App\Http\Controllers\MenuItemController;
 use App\Http\Controllers\PelatihanController;
 use Illuminate\Support\Facades\Route;
-use App\Livewire\Edufans\Index; // Perhatikan perubahan ini
+use App\Livewire\Edufans\Index;
+use Illuminate\Support\Facades\Crypt;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +34,7 @@ Route::permanentRedirect('/', '/home');
 Route::get('/edu', Index::class)->name('edufans.index'); // Perhatikan perubahan ini
 Route::get('/create', App\Livewire\Edufans\Create::class)->name('edufans.create');
 Route::get('/edit/{id}', App\Livewire\Edufans\Edit::class)->name('edufans.edit');
+
 
 Route::group(['middleware' => ['web', 'auth', 'verified']], function () {
     Route::resource('dashboard', DashboardController::class)->only('index');

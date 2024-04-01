@@ -28,7 +28,7 @@ class Edit extends Component
     public function mount($id)
     {
         //get edufan
-        $edufan = Edufan::find($id);
+        $edufan = Edufan::find(decrypt($id));
 
         //assign
         $this->edufanID   = $edufan->id;

@@ -35,8 +35,9 @@ Data Posts - Belajar Livewire 3 di SantriKoding.com
                                 <td>{{ $post->judul }}</td>
                                 <td>{!! $post->deskripsi !!}</td>
                                 <td class="text-center">
-                                    <a href="/edit/{{ $post->id }}" wire:navigate class="btn btn-sm btn-primary">EDIT</a>
-                                    <button class="btn btn-sm btn-danger">DELETE</button>
+                                    <a href="/edit/{{ encrypt($post->id) }}" wire:navigate class="btn btn-sm btn-primary">EDIT</a>
+                                    <a href="#" wire:click.prevent="deleteConfirmation({{ $post->id }})" class="btn btn-sm btn-danger">DELETE</a>
+                                    {{-- <button wire:click="destroy({{ $post->id }})" class="btn btn-sm btn-danger">DELETE</button> --}}
                                 </td>
                             </tr>
                             @empty
@@ -52,3 +53,30 @@ Data Posts - Belajar Livewire 3 di SantriKoding.com
         </div>
     </div>
 </div>
+
+
+<script>
+  window.addEventListener('show-delete-confirmation', event => {
+    Swal.fire({
+  title: "Are you sure?",
+  text: "You won't be able to revert this!",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Yes, delete it!"
+}).then((result) => {
+  if (result.isConfirmed) {
+    Livewire.dispatch('deleteConfirmed')
+  }
+});
+  });
+  
+  window.addEventListener('edufanDeleted', event => {
+    Swal.fire(
+    'Deleted!',    
+    'File telah dihapus',
+    'success'
+    )
+  });  
+    </script>
