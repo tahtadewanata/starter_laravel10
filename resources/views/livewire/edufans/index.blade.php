@@ -47,7 +47,7 @@ Data Posts - Belajar Livewire 3 di SantriKoding.com
                             @endforelse
                         </tbody>
                     </table>
-                    {{ $edufans->links('vendor.pagination.bootstrap-5') }}
+                    {{ $edufans->links('vendor.pagination.simple-tailwind') }}
                 </div>
             </div>
         </div>

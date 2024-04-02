@@ -1,45 +1,114 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!doctype html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg">
+
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
+    <title>@yield('title') | {{ config('app.name', 'Laravel') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
+    @stack('plugin-css')
 
-    <title>@yield('title')</title>
+    <script src="{{ asset('assets/js/layout.js') }}"></script>
     @livewireStyles
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background-color: lightgray;
-            font-family: 'Quicksand', sans-serif
-        }
-
-    </style>
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
+    @stack('css')
 </head>
+
 <body>
-    <div>
-        <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-            <div class="container">
-                <a href="/" wire:navigate class="navbar-brand">HOME</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0" role="search">
-                        <a href="https://santrikoding.com" target="_blank" class="btn btn-success">SANTRIKODING.COM</a>
-                    </ul>
+    <div id="layout-wrapper">
+        <x-dashboard.topbar />
+        <!-- ========== App Menu ========== -->
+        <x-dashboard.sidebar />
+        <!-- Left Sidebar End -->
+        <!-- Vertical Overlay-->
+        <div class="vertical-overlay"></div>
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            @yield('breadcrumb')
+                        </div>
+                    </div>
+                    <!-- end page title -->
+                    <x-form.notivication.alert />
+
+                    {{-- @yield('content') --}}
+                    {{ $slot }}
+
+
                 </div>
+                <!-- container-fluid -->
             </div>
-        </nav>
+            <!-- End Page-content -->
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script> © Velzon.
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-sm-end d-none d-sm-block">
+                                Design & Develop by Themesbrand
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
     </div>
 
-    {{ $slot }}
+    <!--start back-to-top-->
+    <button onclick="topFunction()" class="btn btn-danger btn-icon" id="back-to-top">
+        <i class="ri-arrow-up-line"></i>
+    </button>
+    <!--end back-to-top-->
 
+    <div class="customizer-setting d-none d-md-block">
+        <div class="btn-info btn-rounded shadow-lg btn btn-icon btn-lg p-2" data-bs-toggle="offcanvas"
+            data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas">
+            <i class='mdi mdi-spin mdi-cog-outline fs-22'></i>
+        </div>
+    </div>
+
+    <!-- Theme Settings -->
+    <x-dashboard.theme-settings />
     @livewireScripts
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JAVASCRIPT -->
+    <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/feather-icons/feather.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins.js') }}"></script>
+
+    <!-- custom JS-->
+    @stack('plugin-script')
+
+    <!-- App js -->
+    <script src="{{ asset('assets/js/app.js') }}"></script>
+
+    <!-- custom JS-->
+    @stack('script')
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
+
 </html>
