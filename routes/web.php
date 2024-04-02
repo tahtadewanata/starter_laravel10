@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EdufanController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RouteController;
@@ -43,6 +44,7 @@ Route::group(['middleware' => ['web', 'auth', 'verified']], function () {
         Route::resource('profile', UserProfileController::class)->only('index');
     });
     Route::resource('setting', SettingController::class)->only('index', 'update');
+    Route::resource('edufan', EdufanController::class)->only('index', 'store', 'update', 'destroy');
 
     Route::resource('route', RouteController::class)->only('index', 'store', 'update', 'destroy');
     Route::resource('role', RoleController::class)->only('index', 'store', 'update', 'destroy');
