@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Edufan;
 use Illuminate\Support\Facades\Route as FacadesRoute;
 use Spatie\Permission\Models\Permission;
+use App\Http\Requests\StoreEdufanRequest;
 use Spatie\Permission\Models\Role;
 use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
@@ -21,33 +22,31 @@ class EdufanController extends Controller
     public function index(Request $request)
     {
         $edufans = Edufan::query()
-        ->when(!blank($request->search), function ($query) use ($request) {
-            return $query
-                ->where('judul', 'like', '%' . $request->search . '%')
-                ->orWhere('deskripsi', 'like', '%' . $request->search . '%');
-        })
-        ->orderBy('judul')
-        ->paginate(10);
-    $facadesRoutes = FacadesRoute::getRoutes();
-    $permissions = Permission::orderBy('name')->get();
+            ->when(!blank($request->search), function ($query) use ($request) {
+                return $query
+                    ->where('judul', 'like', '%' . $request->search . '%')
+                    ->orWhere('deskripsi', 'like', '%' . $request->search . '%');
+            })
+            ->orderBy('judul')
+            ->paginate(10);
+        $facadesRoutes = FacadesRoute::getRoutes();
+        $permissions = Permission::orderBy('name')->get();
 
-    return view('edufan.index', compact('edufans', 'permissions', 'facadesRoutes'));
+        return view('edufan.index', compact('edufans', 'permissions', 'facadesRoutes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+
+    public function store(StoreUserRequest $request, UserService $userService)
     {
-        //
+        return $userService->create($request)
+            ? back()->with('success', 'User has been created successfully!')
+            : back()->with('failed', 'User was not created successfully!');
     }
 
     /**

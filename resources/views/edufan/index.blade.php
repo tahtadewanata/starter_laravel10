@@ -13,7 +13,7 @@
             <h4 class="card-title mb-0 flex-grow-1">Route</h4>
             <div class="flex-shrink-0">
                 <button type="button" class="btn btn-soft-primary btn-sm" data-bs-toggle="modal"
-                    data-bs-target="#modal-form-add-route">
+                    data-bs-target="#modal-form-add-edufan">
                     <i class="ri-add-line"></i>
                     Add
                 </button>
@@ -106,5 +106,5 @@
 
     </div>
 
-    @include('components.form.modal.route.add')
+    @include('components.form.modal.edufan.add')
 @endsection
